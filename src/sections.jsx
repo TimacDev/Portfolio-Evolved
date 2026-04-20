@@ -81,7 +81,7 @@ export function Shore({ t }) {
         <Reveal delay={160}>
           <div className="shore-aside">
             <div className="avatar-card">
-              <img src="/fotoperfil.jpg" alt="Tiago Machado" />
+              <img src={import.meta.env.BASE_URL + "fotoperfil.jpg"} alt="Tiago Machado" />
               <div>
                 <div className="who">{t.shore.avatar.name}</div>
                 <div className="role">{t.shore.avatar.role}</div>
