@@ -135,7 +135,7 @@ button { font-family: inherit; cursor: pointer; }
 .hero-photo {
   position: absolute;
   inset: 0;
-  background: #1e5a7a url("assets/baleal_drone.jpg") center/cover no-repeat;
+  background: #1e5a7a url("/baleal_drone.jpg") center/cover no-repeat;
   transform: scale(1.08);
   will-change: transform;
 }
