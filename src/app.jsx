@@ -1,4 +1,9 @@
-// Main App
+import { useState, useEffect } from 'react';
+import CONTENT from './content';
+import Coastline from './coastline';
+import { WaveDivider } from './atoms';
+import { Hero, Shore, Tides, Currents, Reefs, Harbor, FooterBlock } from './sections';
+
 const SECTION_META = {
   en: [
     { id: "shore",    kicker: "Shore",    sub: "01 · Intro" },
@@ -16,20 +21,19 @@ const SECTION_META = {
   ]
 };
 
-function App() {
-  const [lang, setLang] = React.useState(() => localStorage.getItem("lang") || "en");
-  const [active, setActive] = React.useState("shore");
-  const [tweaksOpen, setTweaksOpen] = React.useState(false);
-  const [accent, setAccent] = React.useState("ocean");
-  const [showWaterline, setShowWaterline] = React.useState(true);
+export default function App() {
+  const [lang, setLang] = useState(() => localStorage.getItem("lang") || "en");
+  const [active, setActive] = useState("shore");
+  const [tweaksOpen, setTweaksOpen] = useState(false);
+  const [accent, setAccent] = useState("ocean");
+  const [showWaterline, setShowWaterline] = useState(true);
 
-  React.useEffect(() => { localStorage.setItem("lang", lang); }, [lang]);
+  useEffect(() => { localStorage.setItem("lang", lang); }, [lang]);
 
   const t = CONTENT[lang];
   const sections = SECTION_META[lang];
 
-  // Active section via IntersectionObserver
-  React.useEffect(() => {
+  useEffect(() => {
     const targets = sections.map(s => document.getElementById(s.id)).filter(Boolean);
     if (!targets.length) return;
     const io = new IntersectionObserver((entries) => {
@@ -47,8 +51,7 @@ function App() {
     window.scrollTo({ top: y, behavior: "smooth" });
   }
 
-  // Apply accent
-  React.useEffect(() => {
+  useEffect(() => {
     const root = document.documentElement;
     if (accent === "sun") {
       root.style.setProperty("--ocean", "#c36a2a");
@@ -65,8 +68,7 @@ function App() {
     }
   }, [accent]);
 
-  // Edit-mode wiring
-  React.useEffect(() => {
+  useEffect(() => {
     function onMsg(e) {
       const d = e.data || {};
       if (d.type === "__activate_edit_mode") setTweaksOpen(true);
@@ -79,7 +81,6 @@ function App() {
 
   return (
     <>
-      {/* Floating top nav */}
       <nav className="topnav" aria-label="Primary">
         <span className="brand">TM<span className="dot" /></span>
         <div className="links">
@@ -96,7 +97,7 @@ function App() {
         <button className="cta">{t.nav.cv} ↓</button>
       </nav>
 
-      <Hero t={t} onJump={jump} />
+      <Hero t={t} />
 
       <div className="page">
         {showWaterline && <Coastline sections={sections} active={active} onJump={jump} />}
@@ -115,7 +116,6 @@ function App() {
 
       <FooterBlock t={t} />
 
-      {/* Tweaks */}
       {!tweaksOpen && (
         <button className="tweaks-fab" style={{ display: "inline-flex" }} onClick={() => setTweaksOpen(true)}>
           Tweaks
@@ -143,5 +143,3 @@ function App() {
     </>
   );
 }
-
-ReactDOM.createRoot(document.getElementById("root")).render(<App />);

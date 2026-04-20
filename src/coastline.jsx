@@ -1,8 +1,9 @@
-// Coastline side-nav: sticky rail with rising waterline + dots per section
-function Coastline({ sections, active, onJump }) {
-  const [progress, setProgress] = React.useState(0); // 0..1 position of tide
+import { useState, useEffect } from 'react';
 
-  React.useEffect(() => {
+export default function Coastline({ sections, active, onJump }) {
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
     function onScroll() {
       const first = document.getElementById(sections[0].id);
       const last  = document.getElementById(sections[sections.length - 1].id);
@@ -48,5 +49,3 @@ function Coastline({ sections, active, onJump }) {
     </aside>
   );
 }
-
-Object.assign(window, { Coastline });

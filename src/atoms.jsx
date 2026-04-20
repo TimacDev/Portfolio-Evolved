@@ -1,8 +1,6 @@
-// Low-level atoms: renderers for bilingual rich text, wave SVGs, etc.
-const { Fragment } = React;
+import { Fragment, useRef, useState, useEffect } from 'react';
 
-// Render an array of text/tokens where tokens are {em}, {hl}, {pin}
-function RichText({ tokens }) {
+export function RichText({ tokens }) {
   if (!Array.isArray(tokens)) return tokens;
   return (
     <>
@@ -17,7 +15,7 @@ function RichText({ tokens }) {
   );
 }
 
-function WaveDivider({ color = "var(--foam)", height = 40 }) {
+export function WaveDivider({ color = "var(--foam)", height = 40 }) {
   return (
     <svg className="wave-div" viewBox="0 0 1200 40" preserveAspectRatio="none" style={{ height, color }}>
       <path fill="currentColor" opacity="0.55" d="M0 20 C 60 6, 120 34, 180 20 S 300 6, 360 20 S 480 34, 540 20 S 660 6, 720 20 S 840 34, 900 20 S 1020 6, 1080 20 S 1200 34, 1200 20 L1200 40 L0 40 Z"/>
@@ -26,10 +24,10 @@ function WaveDivider({ color = "var(--foam)", height = 40 }) {
   );
 }
 
-function Reveal({ children, delay = 0 }) {
-  const ref = React.useRef(null);
-  const [shown, setShown] = React.useState(false);
-  React.useEffect(() => {
+export function Reveal({ children, delay = 0 }) {
+  const ref = useRef(null);
+  const [shown, setShown] = useState(false);
+  useEffect(() => {
     const el = ref.current;
     if (!el) return;
     const io = new IntersectionObserver(([e]) => {
@@ -45,8 +43,7 @@ function Reveal({ children, delay = 0 }) {
   );
 }
 
-// Animated SVG wave icon for Tide cards
-function WaveMark() {
+export function WaveMark() {
   return (
     <svg className="wavemark" viewBox="0 0 60 60" fill="none" stroke="currentColor" strokeWidth="1.5">
       <path d="M2 20 Q 15 10 30 20 T 58 20" />
@@ -55,5 +52,3 @@ function WaveMark() {
     </svg>
   );
 }
-
-Object.assign(window, { RichText, WaveDivider, Reveal, WaveMark });

@@ -1,8 +1,9 @@
-// All page sections: Hero, Shore, Tides, Currents, Reefs, Harbor, Footer
+import { useRef, useEffect, useState, Fragment } from 'react';
+import { RichText, WaveMark, Reveal } from './atoms';
 
-function Hero({ t, onJump }) {
-  const photoRef = React.useRef(null);
-  React.useEffect(() => {
+export function Hero({ t }) {
+  const photoRef = useRef(null);
+  useEffect(() => {
     const el = photoRef.current;
     if (!el) return;
     let raf = 0;
@@ -26,10 +27,10 @@ function Hero({ t, onJump }) {
       <div className="hero-inner">
         <div className="hero-eyebrow">
           {t.hero.eyebrow.map((s, i) => (
-            <React.Fragment key={i}>
+            <Fragment key={i}>
               <span className={i === 1 ? "coord" : ""}>{s}</span>
               {i < t.hero.eyebrow.length - 1 && <span className="divider" />}
-            </React.Fragment>
+            </Fragment>
           ))}
         </div>
 
@@ -62,7 +63,7 @@ function Hero({ t, onJump }) {
   );
 }
 
-function Shore({ t }) {
+export function Shore({ t }) {
   return (
     <section id="shore" className="sec" data-screen-label="01 Shore">
       <Reveal>
@@ -80,7 +81,7 @@ function Shore({ t }) {
         <Reveal delay={160}>
           <div className="shore-aside">
             <div className="avatar-card">
-              <img src="assets/fotoperfil.jpg" alt="Tiago Machado" />
+              <img src="/assets/fotoperfil.jpg" alt="Tiago Machado" />
               <div>
                 <div className="who">{t.shore.avatar.name}</div>
                 <div className="role">{t.shore.avatar.role}</div>
@@ -93,7 +94,7 @@ function Shore({ t }) {
                   <div className="k">{f[0]}</div>
                   <div className="v">
                     {f.slice(1).map((x, j) =>
-                      typeof x === "string" ? <React.Fragment key={j}>{x}</React.Fragment>
+                      typeof x === "string" ? <Fragment key={j}>{x}</Fragment>
                       : x && x.pin ? <span key={j} className="pin">{x.pin}</span> : null
                     )}
                   </div>
@@ -107,7 +108,7 @@ function Shore({ t }) {
   );
 }
 
-function Tides({ t }) {
+export function Tides({ t }) {
   return (
     <section id="tides" className="sec" data-screen-label="02 Tides">
       <Reveal>
@@ -137,7 +138,7 @@ function Tides({ t }) {
   );
 }
 
-function Currents({ t }) {
+export function Currents({ t }) {
   return (
     <section id="currents" className="sec" data-screen-label="03 Currents">
       <Reveal>
@@ -163,7 +164,7 @@ function Currents({ t }) {
       </div>
       <Reveal delay={200}>
         <div className="thread">
-          <span className="quote">“</span>
+          <span className="quote">"</span>
           <div>
             {t.currents.thread}<em>{t.currents.threadEm}</em>{t.currents.threadEnd}
           </div>
@@ -173,8 +174,8 @@ function Currents({ t }) {
   );
 }
 
-function Reefs({ t }) {
-  const [filter, setFilter] = React.useState(t.reefs.filters[0]);
+export function Reefs({ t }) {
+  const [filter, setFilter] = useState(t.reefs.filters[0]);
   const all = t.reefs.filters[0];
   const filtered = t.reefs.projects.filter(p =>
     filter === all ||
@@ -227,7 +228,7 @@ function Reefs({ t }) {
   );
 }
 
-function Harbor({ t }) {
+export function Harbor({ t }) {
   function onSubmit(e) {
     e.preventDefault();
     alert("Thanks! I'll get back to you soon.");
@@ -289,7 +290,7 @@ function Harbor({ t }) {
   );
 }
 
-function FooterBlock({ t }) {
+export function FooterBlock({ t }) {
   return (
     <footer className="foot">
       <div className="colophon">{t.foot.colophon}</div>
@@ -297,5 +298,3 @@ function FooterBlock({ t }) {
     </footer>
   );
 }
-
-Object.assign(window, { Hero, Shore, Tides, Currents, Reefs, Harbor, FooterBlock });
