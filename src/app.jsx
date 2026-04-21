@@ -94,10 +94,16 @@ export default function App() {
             </a>
           ))}
         </div>
-        <div className="lang">
-          <button className={lang === "en" ? "on" : ""} onClick={() => setLang("en")}>EN</button>
-          <button className={lang === "pt" ? "on" : ""} onClick={() => setLang("pt")}>PT</button>
-        </div>
+        <button
+          type="button"
+          className="lang"
+          data-lang={lang}
+          aria-label={`Switch language (current: ${lang.toUpperCase()})`}
+          onClick={() => setLang(lang === "en" ? "pt" : "en")}
+        >
+          <span className={lang === "en" ? "on" : ""}>EN</span>
+          <span className={lang === "pt" ? "on" : ""}>PT</span>
+        </button>
         <button className="cta">CV &darr;</button>
       </nav>
 

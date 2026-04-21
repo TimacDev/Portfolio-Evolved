@@ -89,21 +89,39 @@ button { font-family: inherit; cursor: pointer; }
 .topnav .links a.active { background: var(--ink); color: var(--paper); }
 
 .lang {
+  position: relative;
   display: inline-flex;
+  padding: 0;
   border: 1px solid var(--line);
   border-radius: 999px;
   overflow: hidden;
+  background: transparent;
+  cursor: pointer;
   font-family: "JetBrains Mono", monospace;
   font-size: 10px;
   letter-spacing: .08em;
 }
-.lang button {
-  padding: 5px 9px;
-  background: transparent;
-  border: 0;
-  color: var(--ink-3);
+.lang::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: var(--ink);
+  border-radius: 999px;
+  transition: transform .25s ease;
+  z-index: 0;
 }
-.lang button.on { background: var(--ink); color: var(--paper); }
+.lang[data-lang="pt"]::before { transform: translateX(100%); }
+.lang span {
+  position: relative;
+  z-index: 1;
+  padding: 5px 9px;
+  color: var(--ink-3);
+  transition: color .25s ease;
+}
+.lang span.on { color: var(--paper); }
 
 .cta {
   display: inline-flex;
