@@ -772,6 +772,7 @@ section.sec:first-child { border-top: 0; padding-top: 10px; }
   border: 1px solid var(--line);
   background: var(--paper);
   box-shadow: 0 24px 48px -24px rgba(26,26,26,.2);
+  scroll-margin-top: 80px;
 }
 .map-card .head {
   padding: 14px 18px;

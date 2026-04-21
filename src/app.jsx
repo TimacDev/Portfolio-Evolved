@@ -1,8 +1,13 @@
 import { useState, useEffect } from 'react';
-import CONTENT from './content';
-import Coastline from './coastline';
+import Coastline from './components/Coastline';
 import { WaveDivider } from './atoms';
-import { Hero, Shore, Tides, Currents, Reefs, Harbor, FooterBlock } from './sections';
+import Hero from './sections/Hero';
+import Shore from './sections/Shore';
+import Tides from './sections/Tides';
+import Currents from './sections/Currents';
+import Reefs from './sections/Reefs';
+import Harbor from './sections/Harbor';
+import Footer from './sections/Footer';
 
 const SECTION_META = {
   en: [
@@ -30,14 +35,13 @@ export default function App() {
 
   useEffect(() => { localStorage.setItem("lang", lang); }, [lang]);
 
-  const t = CONTENT[lang];
   const sections = SECTION_META[lang];
 
   useEffect(() => {
     const targets = sections.map(s => document.getElementById(s.id)).filter(Boolean);
     if (!targets.length) return;
     const io = new IntersectionObserver((entries) => {
-      const visible = entries.filter(e => e.isIntersecting).sort((a,b) => b.intersectionRatio - a.intersectionRatio);
+      const visible = entries.filter(e => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio);
       if (visible[0]) setActive(visible[0].target.id);
     }, { rootMargin: "-30% 0px -55% 0px", threshold: [0, .25, .5, .75, 1] });
     targets.forEach(el => io.observe(el));
@@ -94,27 +98,27 @@ export default function App() {
           <button className={lang === "en" ? "on" : ""} onClick={() => setLang("en")}>EN</button>
           <button className={lang === "pt" ? "on" : ""} onClick={() => setLang("pt")}>PT</button>
         </div>
-        <button className="cta">{t.nav.cv} ↓</button>
+        <button className="cta">CV &darr;</button>
       </nav>
 
-      <Hero t={t} />
+      <Hero lang={lang} />
 
       <div className="page">
         {showWaterline && <Coastline sections={sections} active={active} onJump={jump} />}
         <main className="main">
-          <Shore t={t} />
+          <Shore lang={lang} />
           <WaveDivider />
-          <Tides t={t} />
+          <Tides lang={lang} />
           <WaveDivider color="var(--sand-2)" />
-          <Currents t={t} />
+          <Currents lang={lang} />
           <WaveDivider />
-          <Reefs t={t} />
+          <Reefs lang={lang} />
           <WaveDivider color="var(--sand-2)" />
-          <Harbor t={t} />
+          <Harbor lang={lang} />
         </main>
       </div>
 
-      <FooterBlock t={t} />
+      <Footer lang={lang} />
 
       {!tweaksOpen && (
         <button className="tweaks-fab" style={{ display: "inline-flex" }} onClick={() => setTweaksOpen(true)}>
@@ -131,8 +135,8 @@ export default function App() {
         </label>
         <label>Accent
           <div className="swatches">
-            <button className={accent === "ocean" ? "on" : ""} style={{ background: "#1e5a7a" }} onClick={() => setAccent("ocean")} aria-label="Ocean" />
-            <button className={accent === "sun" ? "on" : ""} style={{ background: "#d98a3d" }} onClick={() => setAccent("sun")} aria-label="Sun" />
+            <button className={accent === "ocean"  ? "on" : ""} style={{ background: "#1e5a7a" }} onClick={() => setAccent("ocean")}  aria-label="Ocean" />
+            <button className={accent === "sun"    ? "on" : ""} style={{ background: "#d98a3d" }} onClick={() => setAccent("sun")}    aria-label="Sun" />
             <button className={accent === "forest" ? "on" : ""} style={{ background: "#2d6a4f" }} onClick={() => setAccent("forest")} aria-label="Forest" />
           </div>
         </label>
