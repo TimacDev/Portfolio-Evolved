@@ -40,12 +40,27 @@ export default function App() {
   useEffect(() => {
     const targets = sections.map(s => document.getElementById(s.id)).filter(Boolean);
     if (!targets.length) return;
-    const io = new IntersectionObserver((entries) => {
-      const visible = entries.filter(e => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-      if (visible[0]) setActive(visible[0].target.id);
-    }, { rootMargin: "-30% 0px -55% 0px", threshold: [0, .25, .5, .75, 1] });
-    targets.forEach(el => io.observe(el));
-    return () => io.disconnect();
+    let raf = 0;
+    function update() {
+      raf = 0;
+      const threshold = 100;
+      let current = targets[0].id;
+      for (const el of targets) {
+        if (el.getBoundingClientRect().top <= threshold) current = el.id;
+        else break;
+      }
+      setActive(current);
+    }
+    function onScroll() {
+      if (raf) return;
+      raf = requestAnimationFrame(update);
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    update();
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
   }, [lang]);
 
   function jump(id) {
