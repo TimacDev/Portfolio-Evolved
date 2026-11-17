@@ -8,7 +8,7 @@ const content = {
     projects: [
       { id: 1, title: "Tech Store",     desc: "E-commerce mini-project — product grid, cart, checkout. Built hand-in-hand with a classmate.", tags: ["HTML", "CSS", "JS"], type: "Live · collab", thumb: "ocean",  href: "https://github.com/OdaIT/Mini-Projeto_Tiago_Danilo" },
       { id: 2, title: "Digital Menu",   desc: "A restaurant menu flow with categories, filters and a mobile-first layout.",                   tags: ["JS", "Flexbox"],     type: "Live",          thumb: "sand",   href: "https://github.com/OdaIT/Restaurante" },
-      { id: 3, title: "Café App",       desc: "Final project — a React app for specialty coffee shops. Ordering, loyalty, and a touch of ritual.", tags: ["React", "Tailwind"], type: "In progress",  thumb: "sunset", href: "#", wip: true },
+      { id: 3, title: "Café App",       desc: "Final project — a React app for specialty coffee shops. Ordering, loyalty, and a touch of ritual.", tags: ["React", "Tailwind"], type: "In progress",  thumb: "sunset", href: "https://github.com/TimacDev/Grounds", wip: true },
       { id: 4, title: "This Portfolio", desc: "Rebuilt in React — a coastline for a navbar, waves between sections, and Baleal at the top.",       tags: ["React", "CSS"],      type: "Live",          thumb: "ocean",  href: "#" }
     ]
   },
@@ -18,7 +18,7 @@ const content = {
     projects: [
       { id: 1, title: "Tech Store",       desc: "Mini-projeto de e-commerce — grelha, carrinho, checkout. Feito a quatro mãos com um colega.",           tags: ["HTML", "CSS", "JS"], type: "Em linha · colab", thumb: "ocean",  href: "https://github.com/OdaIT/Mini-Projeto_Tiago_Danilo" },
       { id: 2, title: "Menu Digital",     desc: "Menu de restaurante com categorias, filtros e layout mobile-first.",                                     tags: ["JS", "Flexbox"],     type: "Em linha",         thumb: "sand",   href: "https://github.com/OdaIT/Restaurante" },
-      { id: 3, title: "Café App",         desc: "Projeto final — app em React para cafetarias de especialidade. Pedidos, fidelização, e um toque de ritual.", tags: ["React", "Tailwind"], type: "Em curso",         thumb: "sunset", href: "#", wip: true },
+      { id: 3, title: "Café App",         desc: "Projeto final — app em React para cafetarias de especialidade. Pedidos, fidelização, e um toque de ritual.", tags: ["React", "Tailwind"], type: "Em curso",         thumb: "sunset", href: "https://github.com/TimacDev/Grounds", wip: true },
       { id: 4, title: "Este Portefólio",  desc: "Reconstruído em React — uma costa por navbar, ondas entre secções, e o Baleal no topo.",                  tags: ["React", "CSS"],      type: "Em linha",         thumb: "ocean",  href: "#" }
     ]
   }

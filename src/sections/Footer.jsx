@@ -5,7 +5,7 @@ const content = {
   },
   pt: {
     colophon: "\u00A9 2026 Tiago Machado. Desenvolvido com React. Alojado em Peniche, onde o Atlântico edita tudo.",
-    big: "Até já, pelo mar."
+    big: "Vemo-nos à beira mar."
   }
 };
 

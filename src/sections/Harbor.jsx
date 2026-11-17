@@ -65,7 +65,8 @@ export default function Harbor({ lang }) {
             <p className="big">{t.intro}</p>
             <div className="channels">
               {t.channels.map((c, i) => (
-                <a key={i} className="channel" href={c.href}>
+                <a key={i} className="channel" href={c.href}
+                  {...(c.href.startsWith("http") && { target: "_blank", rel: "noopener noreferrer" })}>
                   <span className="k">{c.k}</span>
                   <span className="v">{c.v}</span>
                   <span className="act">{c.act}</span>
